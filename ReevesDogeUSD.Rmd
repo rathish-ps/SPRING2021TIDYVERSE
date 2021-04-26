@@ -90,3 +90,33 @@ a + labs(x = "Time", y = "Price in USD")
 b + labs(x = "Time", y = "Volume")
 ```
 
+
+## Extension (Rathish Sasidharan)
+
+## Transform function to convert string value to numeric
+```{r}
+rates2<-transform(rates , High = as.numeric(High), Volume = as.numeric(Volume))
+```
+
+## Omit the N/A Records
+
+```{r}
+rates2 <- na.omit(rates2)
+```
+
+
+## Filter the record
+```{r}
+## Find the date where the highest volume trading happened
+#Filter the stock by  max value trade volume
+rates2 %>% filter(Volume==max(Volume))
+
+## Find the date where the highest price has reached
+# filter the stock by max price
+rates2 %>% filter(High==max(High))
+```
+
+
+## Conclusion
+
+It appears that the highest trading volume and max DOGECOIN price didn't achieved on the same day , and it may be due to the difference in open price where the max trading happened on a low open price.
